@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% comment %} unifica todos las carpetas templates y lo busca {% endcomment %}
+
+{% block title_head %}
+<title>Alumn@</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Interfaz para cargar datos del alumno/a:<br>
+   -Nombre/Apellido<br>
+   -Materia<br>
+   -Nota<br>
+{% endblock h1_header %}
+
+{% block contenido %}
+
+<p>{{mensaje}}</p>
+
+<form action="" method="post">
+   {% csrf_token %}
+    <table>
+    {{formulario}}
+   </table> 
+    <button>Crear</button>
+</form>
+
+{% endblock contenido %}
+
