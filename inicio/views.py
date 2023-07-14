@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from inicio.forms import CrearAlumnoFormulario
 from inicio.models import Alumno
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def inicio(request):
     return render(request, 'inicio/inicio.html')
 
-
+@login_required
 def crear_alumno(request):
     mensaje = ''
     
@@ -24,4 +25,5 @@ def crear_alumno(request):
         
     formulario = CrearAlumnoFormulario()
     return render(request, 'inicio/crear_alumno.html',{'formulario':formulario , 'mensaje' : mensaje})
+
 
