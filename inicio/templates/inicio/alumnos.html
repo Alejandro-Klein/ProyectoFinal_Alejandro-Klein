@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% comment %} unifica todos las carpetas templates y lo busca {% endcomment %}
+
+{% block title_head %}
+<title>Alumnos</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Alumnos
+{% endblock h1_header %}
+
+{% block contenido %}
+<button>
+<a class="navbar-brand" href={% url 'inicio:crear_alumno' %}>Crear Alumno</a>
+</button>
+<form action={% url 'inicio:alumnos' %}>
+    {{formulario}}
+    <button>Buscar</button>
+</form>
+
+{% if lista_alumnos %}
+{% for alumno in lista_alumnos  %}
+<li>
+    <a href={% url 'inicio:detalle_alumno' alumno.id %}>{{alumno}}</a>
+    <button>
+    <a class="navbar-brand" href={% url 'inicio:modificar_alumno' alumno.id %}>Modificar</a>
+    </button>
+    <button>
+    <a class="navbar-brand" href={% url 'inicio:eliminar_alumno' alumno.id %}>Eliminar</a>
+    </button>
+</li>
+{% endfor %}
+{% else %}
+<p>No se encontro alumno.</p>
+{% endif %}
+
+
+{% endblock contenido %}

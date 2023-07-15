@@ -3,23 +3,20 @@
 {% comment %} unifica todos las carpetas templates y lo busca {% endcomment %}
 
 {% block title_head %}
-<title>Alumn@</title>
+<title>Modificar Alumn@</title>
 {% endblock title_head %}
 
 {% block h1_header %}
-Interfaz para cargar datos del alumno/a:<br>
-   -Nombre/Apellido<br>
-   -Materia<br>
-   -Nota<br>
+Modificar Alumno/a {{alumno.nombre}}
 {% endblock h1_header %}
 
 {% block contenido %}
-<form action={% url 'inicio:crear_alumno' %} method="post">
+<form action={% url 'inicio:modificar_alumno' alumno.id %} method="post">
    {% csrf_token %}
     <table>
-    {{formulario}}
+    {{form}}
    </table> 
-    <button>Crear</button>
+    <button>Modificar</button>
 </form>
 
 {% endblock contenido %}

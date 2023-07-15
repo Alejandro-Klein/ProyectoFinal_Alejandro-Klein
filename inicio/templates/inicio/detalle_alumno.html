@@ -1,0 +1,17 @@
+{% extends 'base.html' %} 
+
+{% comment %} unifica todos las carpetas templates y lo busca {% endcomment %}
+
+{% block title_head %}
+<title>Detalle Alumno</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Datos del Alumno: {{alumno.nombre}}
+{% endblock h1_header %}
+
+{% block contenido %}
+<li>Materia: {{alumno.materia}}</li>
+<li>Nota: {{alumno.nota}}</li>
+<li>Fecha de Examen: {{alumno.fecha_examen}}</li>
+{% endblock contenido %}
