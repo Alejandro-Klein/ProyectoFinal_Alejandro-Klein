@@ -6,6 +6,7 @@ from usuario.form import MiFormularioDeCreacionDeUsuarios,MiFormularioDeEdicionD
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from usuario.models import InfoExtra
 
 # Create your views here.
 
@@ -22,6 +23,9 @@ def login(request):
             user = authenticate(username=usuario , password=contrasenia)
             
             django_login(request, user)
+            
+            InfoExtra.objects.get_or_create(user=user)
+            
             return redirect ('inicio:inicio')
         else:
           return render(request, 'usuario/login.html', {'formulario': formulario}) 
@@ -45,16 +49,21 @@ def registrarse(request):
 
 @login_required
 def edicion_perfil(request):
-    
+    info_extra_user = request.user.infoextra
     if request.method == 'POST':
-        formulario = MiFormularioDeEdicionDeDatosDeUsuario(request.POST, instance=request.user)
+        formulario = MiFormularioDeEdicionDeDatosDeUsuario(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
+            
+            avatar = formulario.cleaned_data.get('avatar')
+            if avatar:   
+              info_extra_user.avatar = avatar
+              info_extra_user.save()
+            
             formulario.save()
             return redirect('inicio:inicio')
-        else:
-            return render(request, 'usuario/edicio_perfil.html',{'formulario': formulario})
+    else:
+      formulario = MiFormularioDeEdicionDeDatosDeUsuario(initial={'avatar':info_extra_user.avatar},instance=request.user)
     
-    formulario = MiFormularioDeEdicionDeDatosDeUsuario(instance=request.user)
     return render(request,'usuario/edicion_perfil.html',{'formulario':formulario})
 
 class ModificarPass(LoginRequiredMixin,PasswordChangeView):
