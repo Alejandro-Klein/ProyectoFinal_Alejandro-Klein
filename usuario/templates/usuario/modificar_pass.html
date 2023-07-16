@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Modificar Pass</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Modificar Pass
+{% endblock h1_header %}
+
+{% comment %} Para entrega modificar url capas {% endcomment %}
+
+{% block contenido %}
+
+<form action={% url 'usuario:modificar_pass' %} method="post">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Modificar password</button>
+</form>
+
+{% endblock contenido %}
