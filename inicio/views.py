@@ -22,7 +22,7 @@ def crear_alumno(request):
            info = formulario.cleaned_data
            alumno = Alumno(nombre=info['nombre'],materia=info['materia'],nota=info['nota'],fecha_examen=info['fecha_examen'])
            alumno.save()
-           mensaje = f'Se cargo el Alumno {alumno.nombre}'
+           mensaje = f'Se cargo alumno/a {alumno.nombre}'
         else:    
            return render(request, 'inicio/crear_alumno.html',{'formulario':formulario})
         

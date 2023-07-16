@@ -14,6 +14,7 @@ Interfaz para cargar datos del alumno/a:<br>
 {% endblock h1_header %}
 
 {% block contenido %}
+<p>{{mensaje}}</p>
 <form action={% url 'inicio:crear_alumno' %} method="post">
    {% csrf_token %}
     <table>
