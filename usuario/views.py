@@ -70,6 +70,8 @@ class ModificarPass(LoginRequiredMixin,PasswordChangeView):
     template_name = 'usuario/modificar_pass.html'
     success_url = reverse_lazy('usuario:editar_perfil')
     
+    
+    
 
 
 

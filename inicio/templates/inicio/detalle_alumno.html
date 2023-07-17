@@ -14,4 +14,11 @@ Datos del Alumno: {{alumno.nombre}}
 <li>Materia: {{alumno.materia}}</li>
 <li>Nota: {{alumno.nota}}</li>
 <li>Fecha de Examen: {{alumno.fecha_examen}}</li>
+<li>Descripcion: {{alumno.descripcion | safe}}</li>
+{% if alumno.imagen_alumno %}
+<li>Foto de {{alumno.nombre}}: <img src={{alumno.imagen_alumno.url}}  alt="" height='50px'></li>
+{% endif %}
+<form action={% url 'inicio:alumnos' %}>
+    <button>Volver</button>
+</form>
 {% endblock contenido %}

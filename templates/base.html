@@ -24,6 +24,7 @@
             <div class="container">
                 <a class="navbar-brand" href={% url "inicio:inicio" %}>Inicio</a>
                 <a class="navbar-brand" href={% url "inicio:alumnos" %}>Alumnos</a>
+                <a class="navbar-brand" href={% url "inicio:datos_usuario" %}>Datos Usuario</a>
                 {% if request.user.is_authenticated %}
                 {% if request.user.infoextra.avatar  %}
                 <img src={{request.user.infoextra.avatar.url}} alt="" height='40px'>
@@ -60,7 +61,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href={% url 'inicio:about' %}>About</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
                     </div>

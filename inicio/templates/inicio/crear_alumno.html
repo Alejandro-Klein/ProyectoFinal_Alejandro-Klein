@@ -14,11 +14,11 @@ Interfaz para cargar datos del alumno/a:<br>
 {% endblock h1_header %}
 
 {% block contenido %}
-<p>{{mensaje}}</p>
-<form action={% url 'inicio:crear_alumno' %} method="post">
+<form action={% url 'inicio:crear_alumno' %} method="post" enctype='multipart/form-data'>
    {% csrf_token %}
     <table>
-    {{formulario}}
+    {{form}}
+    {{form.media}}
    </table> 
     <button>Crear</button>
 </form>

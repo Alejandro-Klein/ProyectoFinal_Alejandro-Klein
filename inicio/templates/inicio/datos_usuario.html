@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% comment %} unifica todos las carpetas templates y lo busca {% endcomment %}
+
+{% block title_head %}
+<title>Datos Usuario</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Datos del usuario: {{user.username}}
+{% endblock h1_header %}
+
+{% block contenido %}
+<li>Nombre: {{request.user.infoextra.first_name}}</li>
+<li>Apellido: {{request.user.infoextra.last_name}}</li>
+<li>Email: {{request.user.infoextra.email}}</li>
+{% if request.user.infoextra.avatar  %}
+ <img src={{request.user.infoextra.avatar.url}} alt="" height='40px'>
+{% endif %}
+<form action={% url 'inicio:inicio' %}>
+    <button>Volver</button>
+</form>
+{% endblock contenido %}

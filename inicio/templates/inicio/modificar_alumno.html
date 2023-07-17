@@ -11,12 +11,19 @@ Modificar Alumno/a {{alumno.nombre}}
 {% endblock h1_header %}
 
 {% block contenido %}
-<form action={% url 'inicio:modificar_alumno' alumno.id %} method="post">
+<form action={% url 'inicio:modificar_alumno' alumno.id %} method="post" enctype='multipart/form-data'>
    {% csrf_token %}
     <table>
     {{form}}
+    {{form.media}}
    </table> 
     <button>Modificar</button>
+</form>
+<p>
+    
+</p>
+<form action={% url 'inicio:alumnos' %}>
+    <button>Volver</button>
 </form>
 
 {% endblock contenido %}
